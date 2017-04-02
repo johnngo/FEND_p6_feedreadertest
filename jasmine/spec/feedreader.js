@@ -89,11 +89,49 @@ $(function() {
          * Remember, loadFeed() is asynchronous so this test will require
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
+            //credit to Karol for assisting with the test suite
+             beforeEach(function (done) {
+                    loadFeed (0, done);
+                    // another way to write a loadFeed call
+                    // loadFeed(0, function(){
+                    //     done();
+                    // });
             });
-    /* TODO: Write a new test suite named "New Feed Selection"
+                //loads one entry for example 'overcoming obstacle'
+            it('load an .entry element within .feed', function(done) {
+                expect($('.feed .entry').length).not.toBe(0);
+                done();
+            });
+        });
 
+
+    /* TODO: Write a new test suite named "New Feed Selection" */
+        describe ('New Feed Selection', function(){
         /* TODO: Write a test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
+        var newFeed;
+
+        // calls the loadFeed with callbacks to be completed
+        // loads the feed item in index 0
+        beforeEach(function(done) {
+            loadFeed(0, function() {
+                newFeed = $('.feed').html();
+                // console.log($('.feed').html());
+                done();
+            });
+        });
+        //loads the feed item in index 3, check that they are not the same
+        // console.log to check that they are not the same
+        it('when a new feed is loaded, the content changes', function(done) {
+            loadFeed(3, function() {
+                expect(newFeed).not.toEqual($('.feed').html());
+                // console.log($('.feed').html());
+                done();
+            });
+        });
+    });
+
+
 }());
