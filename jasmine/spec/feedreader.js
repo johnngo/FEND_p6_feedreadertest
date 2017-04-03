@@ -78,7 +78,7 @@ $(function() {
                 //when menu list appears, menu icon is clicked, menu-hidden class changes
                 $('.menu-icon-link').click();
                 expect($('body').hasClass('menu-hidden')).toBe(true);
-            })
+            });
       });
 
     /* TODO: Write a new test suite named "Initial Entries" */
